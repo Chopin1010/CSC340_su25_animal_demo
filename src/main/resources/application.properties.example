@@ -1,0 +1,14 @@
+spring.application.name=demo
+
+# Database Configuration
+# IMPORTANT: Replace the placeholders with your actual Neon database credentials
+# DO NOT commit the actual application.properties file with real credentials to GitHub
+spring.datasource.url=postgresql://YOUR-USERNAME:YOUR-PASSWORD@YOUR-HOST:PORT/YOUR-DATABASE?sslmode=require
+spring.datasource.username=YOUR-USERNAME
+spring.datasource.password=YOUR-PASSWORD
+
+# JPA/Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true 
