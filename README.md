@@ -71,3 +71,13 @@ http://localhost:8080/api/lions
     "birthDate": "date"
 }
 ``` 
+
+## Tested endpoints passed
+- GET /api/lions
+- GET /api/lions/{id}
+- POST /api/lions
+- PUT /api/lions/{id}
+- DELETE /api/lions/{id}
+- GET /api/lions/species/{species}
+- GET /api/lions/search?name={name}
+- GET /api/lions/habitat/{habitat}
