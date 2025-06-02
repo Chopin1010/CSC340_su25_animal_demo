@@ -1,6 +1,6 @@
-# Lion API Documentation
+# su25_CamdenGregory_LionAPI
 
-This is a RESTful API for managing lions in a database. The API provides endpoints for CRUD operations and additional queries.
+Simple RESTful API for managing lions in a database. 
 
 ## Base URL
 ```
