@@ -7,6 +7,36 @@ Simple RESTful API for managing lions in a database.
 http://localhost:8080/api/lions
 ```
 
+## How to Run the Application
+
+To get this full-stack application up and running, follow these steps:
+
+### 1. Start the Backend (Spring Boot API)
+
+Navigate to the root of this project (`CSC340_animal_demo`) in your terminal and run the Spring Boot application:
+
+```bash
+cd CSC340_animal_demo
+./mvnw clean install
+./mvnw spring-boot:run
+```
+
+The backend API will typically run on `http://localhost:8080`.
+
+### 2. Start the Frontend (React Application)
+
+Open a **new terminal window** (keep the backend running in its own terminal), navigate to the `front_end/` directory, install the necessary Node.js dependencies, and then start the React development server:
+
+```bash
+cd front_end
+npm install
+npm run dev
+```
+
+The frontend application will typically open in your browser at `http://localhost:5173`.
+
+Enjoy exploring the Majestic Lion App!
+
 ## Endpoints
 
 ### Get All Lions
@@ -81,3 +111,4 @@ http://localhost:8080/api/lions
 - GET /api/lions/species/{species}
 - GET /api/lions/search?name={name}
 - GET /api/lions/habitat/{habitat}
+
