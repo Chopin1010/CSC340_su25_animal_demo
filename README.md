@@ -1,6 +1,6 @@
 # su25_CamdenGregory_LionAPI
 
-Simple RESTful API for managing lions in a database. 
+Simple Full Stack Web App with React frontend and Spring-Boot backend for managing lions in a database. 
 
 ## Base URL
 ```
