@@ -7,6 +7,8 @@ function AddLion() {
   const [species, setSpecies] = useState('');
   const [habitat, setHabitat] = useState('');
   const [description, setDescription] = useState('');
+  const [weight, setWeight] = useState<string>('');
+  const [birthDate, setBirthDate] = useState<string>('');
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -17,7 +19,14 @@ function AddLion() {
     setError(null);
 
     try {
-      const newLion = { name, species, habitat, description };
+      const newLion = {
+        name,
+        species,
+        habitat,
+        description,
+        weight: parseFloat(weight),
+        birthDate: new Date(birthDate).toISOString().split('T')[0]
+      };
       await axios.post('http://localhost:8080/api/lions', newLion);
       setMessage('Lion added successfully!');
       // Optionally, clear form or redirect
@@ -25,9 +34,11 @@ function AddLion() {
       setSpecies('');
       setHabitat('');
       setDescription('');
+      setWeight('');
+      setBirthDate('');
       navigate('/'); // Redirect to the list of lions
     } catch (err) {
-      setError('Failed to add lion. Please check the form data and try again.');
+      setError('Failed to add lion. Please check the form data and ensure all fields are valid.');
     }
   };
 
@@ -80,6 +91,29 @@ function AddLion() {
             className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
             required
           ></textarea>
+        </div>
+        <div>
+          <label htmlFor="weight" className="block text-sm font-medium text-gray-400">Weight</label>
+          <input
+            type="number"
+            id="weight"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            required
+            step="0.1"
+          />
+        </div>
+        <div>
+          <label htmlFor="birthDate" className="block text-sm font-medium text-gray-400">Birth Date</label>
+          <input
+            type="date"
+            id="birthDate"
+            value={birthDate}
+            onChange={(e) => setBirthDate(e.target.value)}
+            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
         </div>
         <button
           type="submit"

@@ -3,11 +3,13 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
 interface Lion {
-  id: number;
+  lionId: number;
   name: string;
   species: string;
   habitat: string;
   description: string;
+  weight: number;
+  birthDate: string;
 }
 
 function EditLion() {
@@ -17,6 +19,8 @@ function EditLion() {
   const [species, setSpecies] = useState('');
   const [habitat, setHabitat] = useState('');
   const [description, setDescription] = useState('');
+  const [weight, setWeight] = useState<string>('');
+  const [birthDate, setBirthDate] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -26,11 +30,17 @@ function EditLion() {
     const fetchLion = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/api/lions/${id}`);
-        setLion(response.data);
-        setName(response.data.name);
-        setSpecies(response.data.species);
-        setHabitat(response.data.habitat);
-        setDescription(response.data.description);
+        const fetchedLion: Lion = response.data;
+        setLion(fetchedLion);
+        setName(fetchedLion.name);
+        setSpecies(fetchedLion.species);
+        setHabitat(fetchedLion.habitat);
+        setDescription(fetchedLion.description);
+        setWeight(fetchedLion.weight.toString());
+        if (fetchedLion.birthDate) {
+          const date = new Date(fetchedLion.birthDate);
+          setBirthDate(date.toISOString().split('T')[0]);
+        }
         setLoading(false);
       } catch (err) {
         setError('Failed to fetch lion details for editing.');
@@ -54,12 +64,20 @@ function EditLion() {
     }
 
     try {
-      const updatedLion = { ...lion, name, species, habitat, description };
+      const updatedLion = {
+        ...lion,
+        name,
+        species,
+        habitat,
+        description,
+        weight: parseFloat(weight),
+        birthDate: new Date(birthDate).toISOString().split('T')[0]
+      };
       await axios.put(`http://localhost:8080/api/lions/${id}`, updatedLion);
       setMessage('Lion updated successfully!');
-      navigate(`/lions/${id}`); // Redirect to the updated lion's details page
+      navigate(`/lions/${id}`);
     } catch (err) {
-      setError('Failed to update lion. Please check the form data and try again.');
+      setError('Failed to update lion. Please check the form data and ensure all fields are valid.');
     }
   };
 
@@ -116,6 +134,29 @@ function EditLion() {
             className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
             required
           ></textarea>
+        </div>
+        <div>
+          <label htmlFor="weight" className="block text-sm font-medium text-gray-400">Weight</label>
+          <input
+            type="number"
+            id="weight"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            required
+            step="0.1"
+          />
+        </div>
+        <div>
+          <label htmlFor="birthDate" className="block text-sm font-medium text-gray-400">Birth Date</label>
+          <input
+            type="date"
+            id="birthDate"
+            value={birthDate}
+            onChange={(e) => setBirthDate(e.target.value)}
+            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
         </div>
         <button
           type="submit"

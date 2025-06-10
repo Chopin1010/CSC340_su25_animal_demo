@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 interface Lion {
-  id: number;
+  lionId: number;
   name: string;
   species: string;
   habitat: string;
@@ -38,7 +38,7 @@ function LionList() {
       <h1 className="text-2xl font-bold mb-4">Lions</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {lions.map((lion) => (
-          <Link to={`/lions/${lion.id}`} key={lion.id} className="block">
+          <Link to={`/lions/${lion.lionId}`} key={lion.lionId} className="block">
             <div className="border p-4 rounded shadow bg-gray-800 hover:bg-gray-700 transition-colors duration-200">
               <h2 className="text-xl font-semibold text-gray-200">{lion.name}</h2>
               <p className="text-gray-400">Species: {lion.species}</p>
