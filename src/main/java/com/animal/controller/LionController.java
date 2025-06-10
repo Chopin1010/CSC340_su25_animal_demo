@@ -12,6 +12,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/lions")
+@CrossOrigin(origins = "http://localhost:5173") // React's default port
 public class LionController {
     
     @Autowired
