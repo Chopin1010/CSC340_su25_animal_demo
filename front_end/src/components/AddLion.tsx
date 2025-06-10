@@ -29,97 +29,96 @@ function AddLion() {
       };
       await axios.post('http://localhost:8080/api/lions', newLion);
       setMessage('Lion added successfully!');
-      // Optionally, clear form or redirect
       setName('');
       setSpecies('');
       setHabitat('');
       setDescription('');
       setWeight('');
       setBirthDate('');
-      navigate('/'); // Redirect to the list of lions
+      navigate('/');
     } catch (err) {
       setError('Failed to add lion. Please check the form data and ensure all fields are valid.');
     }
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Add New Lion</h1>
-      {message && <div className="bg-green-500 text-white p-2 rounded mb-4">{message}</div>}
-      {error && <div className="bg-red-500 text-white p-2 rounded mb-4">{error}</div>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="max-w-3xl mx-auto p-10 bg-gray-900 rounded-2xl shadow-3xl border border-indigo-800 mt-12 transform transition-all duration-300 hover:scale-[1.01]">
+      <h1 className="text-5xl font-extrabold mb-8 text-center text-indigo-400 drop-shadow-lg">Add New Lion</h1>
+      {message && <div className="bg-green-700 text-white p-4 rounded-lg mb-6 text-center font-semibold shadow-md animate-fade-in">{message}</div>}
+      {error && <div className="bg-red-700 text-white p-4 rounded-lg mb-6 text-center font-semibold shadow-md animate-fade-in">{error}</div>}
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-400">Name</label>
+          <label htmlFor="name" className="block text-lg font-medium text-gray-200 mb-2">Name</label>
           <input
             type="text"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            className="mt-1 block w-full p-4 border border-gray-700 rounded-lg shadow-inner bg-gray-800 text-gray-50 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-600 focus:border-transparent transition-all duration-300 text-lg"
             required
           />
         </div>
         <div>
-          <label htmlFor="species" className="block text-sm font-medium text-gray-400">Species</label>
+          <label htmlFor="species" className="block text-lg font-medium text-gray-200 mb-2">Species</label>
           <input
             type="text"
             id="species"
             value={species}
             onChange={(e) => setSpecies(e.target.value)}
-            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            className="mt-1 block w-full p-4 border border-gray-700 rounded-lg shadow-inner bg-gray-800 text-gray-50 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-600 focus:border-transparent transition-all duration-300 text-lg"
             required
           />
         </div>
         <div>
-          <label htmlFor="habitat" className="block text-sm font-medium text-gray-400">Habitat</label>
+          <label htmlFor="habitat" className="block text-lg font-medium text-gray-200 mb-2">Habitat</label>
           <input
             type="text"
             id="habitat"
             value={habitat}
             onChange={(e) => setHabitat(e.target.value)}
-            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            className="mt-1 block w-full p-4 border border-gray-700 rounded-lg shadow-inner bg-gray-800 text-gray-50 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-600 focus:border-transparent transition-all duration-300 text-lg"
             required
           />
         </div>
         <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-400">Description</label>
+          <label htmlFor="description" className="block text-lg font-medium text-gray-200 mb-2">Description</label>
           <textarea
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            rows={3}
-            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            rows={5}
+            className="mt-1 block w-full p-4 border border-gray-700 rounded-lg shadow-inner bg-gray-800 text-gray-50 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-600 focus:border-transparent transition-all duration-300 text-lg"
             required
           ></textarea>
         </div>
         <div>
-          <label htmlFor="weight" className="block text-sm font-medium text-gray-400">Weight</label>
+          <label htmlFor="weight" className="block text-lg font-medium text-gray-200 mb-2">Weight (kg)</label>
           <input
             type="number"
             id="weight"
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
-            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            className="mt-1 block w-full p-4 border border-gray-700 rounded-lg shadow-inner bg-gray-800 text-gray-50 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-600 focus:border-transparent transition-all duration-300 text-lg"
             required
             step="0.1"
           />
         </div>
         <div>
-          <label htmlFor="birthDate" className="block text-sm font-medium text-gray-400">Birth Date</label>
+          <label htmlFor="birthDate" className="block text-lg font-medium text-gray-200 mb-2">Birth Date</label>
           <input
             type="date"
             id="birthDate"
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
-            className="mt-1 block w-full p-2 border border-gray-700 rounded-md shadow-sm bg-gray-800 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500"
+            className="mt-1 block w-full p-4 border border-gray-700 rounded-lg shadow-inner bg-gray-800 text-gray-50 focus:outline-none focus:ring-4 focus:ring-indigo-600 focus:border-transparent transition-all duration-300 text-lg"
             required
           />
         </div>
         <button
           type="submit"
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="w-full flex justify-center py-4 px-6 border border-transparent rounded-lg shadow-lg text-xl font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 transform hover:scale-105"
         >
-          Add Lion
+          Add Majestic Lion
         </button>
       </form>
     </div>

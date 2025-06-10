@@ -18,19 +18,19 @@ interface Lion {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-900 text-gray-100">
-        <nav className="bg-gray-800 p-4 shadow-md">
-          <ul className="flex space-x-4">
+      <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-800 text-gray-50 font-sans antialiased">
+        <nav className="bg-gray-900 p-4 shadow-2xl border-b-4 border-indigo-600">
+          <ul className="flex justify-center space-x-8 text-xl font-medium">
             <li>
-              <Link to="/" className="hover:text-gray-400">See All Lions</Link>
+              <Link to="/" className="text-indigo-400 hover:text-indigo-200 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-indigo-700/30">See All Lions</Link>
             </li>
             <li>
-              <Link to="/add" className="hover:text-gray-400">Add New Lion</Link>
+              <Link to="/add" className="text-indigo-400 hover:text-indigo-200 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-indigo-700/30">Add New Lion</Link>
             </li>
           </ul>
         </nav>
 
-        <main className="p-4">
+        <main className="container mx-auto px-4 py-8 lg:px-8 lg:py-12">
           <Routes>
             <Route path="/" element={<LionList />} />
             <Route path="/add" element={<AddLion />} />
